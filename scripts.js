@@ -1,66 +1,30 @@
-// JavaScript for Archetype Quiz
+/ Captura o formulário e adiciona um evento de envio
+document.getElementById("archetype-test").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evita o envio padrão do formulário
 
-const questions = document.querySelectorAll(".quiz-question");
-const feedbackSection = document.querySelector(".feedback");
-const feedbackTitle = feedbackSection.querySelector("h2");
-const feedbackText = feedbackSection.querySelector("p");
-let selectedAnswers = [];
+    // Objeto para contar os arquétipos
+    const archetypeCounts = {
+        Cleopatra: 0,
+        Guerreira: 0,
+        Mae: 0,
+        Seria: 0,
+        MulherFatal: 0
+    };
 
-// Handle answer selection
-questions.forEach((question, index) => {
-  const options = question.querySelectorAll("li");
+    // Percorre todas as perguntas e coleta as respostas selecionadas
+    const formData = new FormData(event.target);
+    for (let [question, answer] of formData.entries()) {
+        if (archetypeCounts[answer] !== undefined) {
+            archetypeCounts[answer]++;
+        }
+    }
 
-  options.forEach((option) => {
-    option.addEventListener("click", () => {
-      // Remove previous selection
-      options.forEach((opt) => opt.classList.remove("selected"));
-      // Mark the clicked option as selected
-      option.classList.add("selected");
-      // Store the answer
-      selectedAnswers[index] = option.dataset.archetype;
-    });
-  });
+    // Determina o arquétipo dominante
+    const dominantArchetype = Object.keys(archetypeCounts).reduce((a, b) => 
+        archetypeCounts[a] > archetypeCounts[b] ? a : b
+    );
+
+    // Redireciona para a página de resultados com o arquétipo dominante como parâmetro
+    window.location.href = `resultado.html?archetype=${dominantArchetype}`;
 });
-
-// Submit button functionality
-document.querySelector(".button").addEventListener("click", () => {
-  if (selectedAnswers.length < questions.length) {
-    alert("Por favor, responda todas as perguntas antes de enviar!");
-    return;
-  }
-
-  const result = calculateResult(selectedAnswers);
-  displayFeedback(result);
-});
-
-// Calculate the most frequent archetype
-function calculateResult(answers) {
-  const frequency = {};
-
-  answers.forEach((answer) => {
-    frequency[answer] = (frequency[answer] || 0) + 1;
-  });
-
-  // Find the archetype with the highest count
-  return Object.keys(frequency).reduce((a, b) =>
-    frequency[a] > frequency[b] ? a : b
-  );
-}
-
-// Display feedback based on the result
-function displayFeedback(archetype) {
-  const archetypeDescriptions = {
-    Cleopatra: "Você é estrategista, confiante e nasceu para liderar.",
-    Guerreira:
-      "Você é corajosa, determinada e sempre enfrenta desafios de frente.",
-    Mae: "Você é empática, acolhedora e tem um grande coração.",
-    Seria:
-      "Você é intuitiva, misteriosa e tem uma conexão profunda com suas emoções.",
-    MulherFatal: "Você é magnética, confiante e domina a arte da sedução."
-  };
-
-  feedbackTitle.textContent = `Seu arquétipo é: ${archetype}`;
-  feedbackText.textContent = archetypeDescriptions[archetype];
-  feedbackSection.style.display = "block";
-}
 
