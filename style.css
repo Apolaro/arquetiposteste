@@ -1,141 +1,80 @@
-/* CSS for Archetype Quiz */
-
-/* Global styles */
+* Estilos gerais */
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: #fffaf6;
+  font-family: Arial, sans-serif;
+  background-color: #f8f4f9;
   margin: 0;
   padding: 0;
   color: #333;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-h1,
-h2 {
+header {
   text-align: center;
-  color: #d19f68;
+  background-color: #ffd1dc;
+  padding: 20px;
+  border-bottom: 2px solid #ffc0cb;
 }
 
-h1 {
+header h1 {
   font-size: 2.5em;
+  color: #a8326c;
+  margin: 0;
+}
+
+header p {
+  font-size: 1.2em;
+  color: #6e2145;
+}
+
+main {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
 }
 
 h2 {
-  font-size: 1.8em;
+  color: #a8326c;
+  border-bottom: 2px solid #ffc0cb;
+  padding-bottom: 5px;
+}
+
+.question {
   margin-bottom: 20px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Question styles */
-.quiz-question {
-  margin-bottom: 30px;
+.question p {
+  font-weight: bold;
 }
 
-.quiz-question h3 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
+label {
+  display: block;
+  margin: 8px 0;
 }
 
-.answers {
-  list-style: none;
-  padding: 0;
-}
-
-.answers li {
-  background-color: #f9f4ed;
-  border: 1px solid #e0d7c3;
-  border-radius: 8px;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.answers li:hover {
-  background-color: #f2e8d5;
-  transform: scale(1.02);
-}
-
-.answers li.selected {
-  background-color: #d19f68;
+button {
+  background-color: #a8326c;
   color: #fff;
-}
-
-/* Feedback section */
-.feedback {
-  display: none;
-  margin-top: 30px;
-  text-align: center;
-  padding: 20px;
-  border: 2px solid #d19f68;
-  border-radius: 10px;
-  background-color: #fffaf6;
-}
-
-.feedback h2 {
-  margin-bottom: 15px;
-  color: #d19f68;
-}
-
-.feedback p {
-  font-size: 1.2em;
-  color: #333;
-}
-
-.feedback .share-button {
-  display: inline-block;
-  background-color: #d19f68;
-  color: #fff;
-  text-decoration: none;
+  border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  margin-top: 15px;
+  font-size: 1em;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.feedback .share-button:hover {
-  background-color: #b38254;
+button:hover {
+  background-color: #7a244e;
 }
 
-/* Button styles */
-.button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 1.1em;
-  color: #fff;
-  background-color: #d19f68;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+footer {
   text-align: center;
-  margin-top: 20px;
+  background-color: #ffd1dc;
+  padding: 10px;
+  border-top: 2px solid #ffc0cb;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
-
-.button:hover {
-  background-color: #b38254;
-}
-
-/* Responsiveness */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2em;
-  }
-
-  h2 {
-    font-size: 1.5em;
-  }
-
-  .answers li {
-    font-size: 0.9em;
-  }
-
-  .feedback p {
-    font-size: 1em;
-  }
-}
-
